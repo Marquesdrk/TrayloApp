@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 30% 96%;
+    --foreground: 228 40% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 228 40% 8%;
+    --primary: 222 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --brand2: 172 100% 36%;
+    --secondary: 220 25% 92%;
+    --secondary-foreground: 228 40% 14%;
+    --muted: 220 25% 93%;
+    --muted-foreground: 225 12% 38%;
+    --accent: 220 25% 92%;
+    --accent-foreground: 228 40% 14%;
+    --destructive: 352 90% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 90% 30%;
+    --warning: 30 100% 42%;
+    --route: 222 100% 50%;
+    --border: 220 20% 87%;
+    --input: 220 20% 82%;
+    --ring: 222 100% 50%;
+    --radius: 1rem;
+  }
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 5%;
+    --card-foreground: 0 0% 98%;
+    --primary: 219 100% 62%;
+    --primary-foreground: 0 0% 100%;
+    --brand2: 171 100% 50%;
+    --secondary: 240 8% 11%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 240 8% 9%;
+    --muted-foreground: 240 6% 64%;
+    --accent: 240 8% 12%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 352 100% 62%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 160 100% 50%;
+    --warning: 40 100% 58%;
+    --route: 219 100% 62%;
+    --border: 240 6% 15%;
+    --input: 240 6% 20%;
+    --ring: 219 100% 62%;
+  }
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
+  body { @apply bg-background text-foreground font-sans antialiased; -webkit-tap-highlight-color: transparent; letter-spacing: -0.005em; }
+  h1, h2, h3 { letter-spacing: -0.025em; }
+  input, select, button { font: inherit; }
+  ::selection { background: hsl(var(--primary) / .35); }
+}
+
+@layer components {
+  .bg-brand { background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--brand2)) 100%); }
+  .text-brand { background-image: linear-gradient(100deg, hsl(var(--primary)), hsl(var(--brand2))); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .glass { background: hsl(var(--card) / .72); backdrop-filter: blur(22px) saturate(1.6); -webkit-backdrop-filter: blur(22px) saturate(1.6); border: 1px solid hsl(0 0% 100% / .09); }
+  .light .glass, :root:not(.dark) .glass { border-color: hsl(0 0% 0% / .06); background: hsl(0 0% 100% / .78); }
+  .glow { box-shadow: 0 8px 32px -6px hsl(var(--primary) / .55), 0 0 0 1px hsl(var(--primary) / .25); }
+  .glow-soft { box-shadow: 0 0 60px -20px hsl(var(--primary) / .6); }
+  .eyebrow { @apply text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground; }
+  .surface { @apply rounded-3xl border bg-card; }
+  .aurora { background: radial-gradient(600px 300px at 10% -10%, hsl(var(--primary) / .28), transparent 70%), radial-gradient(500px 280px at 100% 0%, hsl(var(--brand2) / .20), transparent 70%); }
+}
+
+/* MapLibre */
+.maplibregl-ctrl-attrib { font-size: 10px; opacity: .55; }
+.maplibregl-ctrl-bottom-left, .maplibregl-ctrl-bottom-right { z-index: 1; }
+@keyframes pulse-ring { 0% { transform: scale(.6); opacity: .6 } 100% { transform: scale(2.6); opacity: 0 } }
+.pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+@keyframes live-dot { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+.live-dot { animation: live-dot 1.4s ease-in-out infinite; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+.safe-b { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
